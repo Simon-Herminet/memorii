@@ -5,24 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $title ?></title>
-    <!-- lien bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
     <!-- lien feuille de style -->
 
-    <!-- <link rel="stylesheet" href="style.css">  -->
-
-
-
-
-
-
+    <link rel="stylesheet" href="style.css">
 
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.google.com/specimen/Libre+Baskerville?query=libre" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 
 
@@ -34,39 +24,48 @@
     <div id="wrapper">
 
         <!---------- STRUCTURE HEADER --------------------- -->
-
-
-
-
+        <header>
+            <img id="logo" src="../public/images/Memorii.svg">
         </header>
         <!-- ------------FIN HEADER---------------------- -->
 
 
-
         <!-- ---------------------------------FIN NAVIGATION--------------------------------------------------------- -->
+        <div id="main">
+
+            <?php $navigation = isset($_SESSION['id_user']) ? $nav : ''; ?>
+            <main>
+
+                <?= $navigation ?>
+                <?= $content ?>
+            </main>
 
 
 
-        <main>
-            <?= $content ?>
-        </main>
-
-
-
-
+        </div>
         <!---------- STRUCTURE FOOTER --------------------- -->
         <footer>
+            <div id="menuFooter">
+                <ul id='listFooter'>
+                    <li>
+                        <p>Mentions Légales</p>
+                    </li>
+                    <li>
+                        <p>Politique des données personnels</p>
+                    </li>
+                    <li>
+                        <p>Plan du site</p>
+                    </li>
+                </ul>
+            </div>
+            <p>
+                MEMORii Copyright © 2024
+            </p>
+
+        </footer>
 
 
-    </div>
-    <p class="menu_footer" id="copy">
-        MEMORii Copyright 2024
-    </p>
-
-    </footer>
-
-
-    <!---------- FIN FOOTER --------------------- -->
+        <!---------- FIN FOOTER --------------------- -->
 
 
 
