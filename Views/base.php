@@ -32,17 +32,20 @@
 
         <!-- ---------------------------------FIN NAVIGATION--------------------------------------------------------- -->
         <?php if (isset($_SESSION['message'])) {
-            echo "<div class='message'>" . $_SESSION['message'] . "</div>";
+            echo "<div class='message'>" . '<h4>' . $_SESSION['message'] . '</h4>' . "</div>";
             unset($_SESSION['message']);
         }
 
         // Pour les messages d'erreur
         if (isset($_SESSION['error'])) {
-            echo "<div class='error'>" . $_SESSION['error'] . "</div>";
+            echo "<div class='error'>" . "<h4>" . $_SESSION['error'] . "</h4>" . "</div>";
             unset($_SESSION['error']);
         } ?>
         <div id="main">
             <main>
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" id="menu-icon">
+                    <path fill="#313131" d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
+                </svg> -->
                 <?php
 
                 $navigation = isset($_SESSION['id_user']) ? $nav : ''; ?>

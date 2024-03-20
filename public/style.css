@@ -11,17 +11,25 @@ p {
 
 h1,
 h2,
-h3,
-h4 {
+h3 {
     font-family: Poppins, sans-serif;
-    /* font-size: small; */
+    font-weight: 500;
+}
 
+h4 {
+    font-family: Poppins, sans serif;
+    font-weight: 300;
 }
 
 
 a {
     text-decoration: none;
     color: inherit;
+}
+
+a:hover {
+    color: #E83B3B;
+
 }
 
 /* HEADER */
@@ -169,3 +177,5 @@ footer {
 }
 
 /* FIN FOOTER */
+
+/* Menu burger */
