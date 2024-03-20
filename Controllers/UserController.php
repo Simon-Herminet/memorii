@@ -9,12 +9,11 @@ use App\Models\UserModel;
 class UserController extends Controller
 {
 
+
+    // INSCRIPTION ET CONNEXION DU USER
+
     public function inscription()
     {
-
-        // var_dump($_POST['form_inscription']);
-        // var_dump($_POST);
-        // var_dump($_POST['form_connexion']);
 
         if (isset($_POST['form_inscription'])) {
             // Traitement du formulaire d'inscription
@@ -70,7 +69,8 @@ class UserController extends Controller
     }
 
 
-    // Deconnexion du user
+    // DECONNEXION USER
+
     public function logout()
     {
         session_destroy();
@@ -78,8 +78,102 @@ class UserController extends Controller
         header('location:' . $this->baseUrlSite . '');
     }
 
+
+    // PAGE ACCUEIL USER CONNECTé
     public function index()
     {
         $this->render('user/index');
+    }
+
+
+    // UPDATE DES INFOS USER
+    public function updateForm()
+    {
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $id_user = $_POST['id_user'] ?? '';
+            $emailUser = $_POST['email_user'] ?? '';
+            $nomUser = $_POST['nom_user'] ?? '';
+            $prenomUser = $_POST['prenom_user'] ?? '';
+
+            if (!empty($id_user) && !empty($emailUser) && !empty($nomUser) && !empty($prenomUser)) {
+                $majUser = new User();
+
+                $majUser->setId_user($this->protected_values($id_user));
+                $majUser->setNom_user($this->protected_values($nomUser));
+                $majUser->setPrenom_user($this->protected_values($prenomUser));
+                $majUser->setEmail_user($this->protected_values($emailUser));
+
+                $userModel = new UserModel();
+                $userModel->updateInfo($majUser);
+
+
+                $_SESSION['nom_user'] = $majUser->getNom_user();
+                $_SESSION['prenom_user'] = $majUser->getPrenom_user();
+                $_SESSION['email_user'] = $majUser->getEmail_user();
+
+                // Rediriger l'utilisateur vers la page de profil
+                $_SESSION['message'] = "Les données ont été mis a jour avec succès.";
+                $this->render('user/index');
+                exit();
+            }
+        }
+        $this->render('user/updateForm');
+    }
+
+    // UPDATE MOT DE PASSE USER
+
+    public function updateMdp()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $id_user = $_SESSION['id_user'] ?? '';
+            $old_mdp = $_POST['old_mdp_user'] ?? '';
+            $new_mdp = $_POST['new_mdp_user'] ?? '';
+            $confirm_new_mdp = $_POST['confirm_new_mdp_user'] ?? '';
+
+            if ($new_mdp !== $confirm_new_mdp) {
+                echo "Les nouveaux mots de passe ne correspondent pas.";
+                return;
+            }
+
+
+            $userModel = new UserModel();
+            $user = $userModel->findById($id_user);
+
+            if (!password_verify($old_mdp, $user->getMdp_user())) {
+                echo "Mot de passe actuel incorrect.";
+                return;
+            }
+
+            // Hash du nouveau mot de passe
+            $hashed_new_mdp = password_hash($new_mdp, PASSWORD_DEFAULT);
+
+            $user->setMdp_user($hashed_new_mdp);
+
+            $userModel->updateMdp($user);
+
+            $_SESSION['user'] = $user;
+            // Message de deconnexion apres changement du mot de passe 
+?>
+            <script>
+                // Message au user : 
+                alert("Votre mot de passe a bien été mis à jour. Vous allez maintenant être déconnecté.");
+
+                // Déconnexion de l'utilisateur en supprimant la session
+                fetch("<?php echo $this->baseUrlSite . 'index.php?controller=User&action=logout'; ?>", {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                }).then(response => {
+
+                    window.location.href = "<?php echo $this->baseUrlSite . 'index.php?controller=User&action=inscription'; ?>";
+                }).catch(error => {
+                    console.error('Erreur lors de la déconnexion:', error);
+                });
+            </script>
+<?php
+        } else {
+            // Rediriger vers la page de formulaire si la méthode de requête n'est pas POST
+            $this->render('user/updateMdp');
+        }
     }
 }
