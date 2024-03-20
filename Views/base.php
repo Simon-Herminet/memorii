@@ -31,26 +31,25 @@
 
 
         <!-- ---------------------------------FIN NAVIGATION--------------------------------------------------------- -->
+        <?php if (isset($_SESSION['message'])) {
+            echo "<div class='message'>" . $_SESSION['message'] . "</div>";
+            unset($_SESSION['message']);
+        }
+
+        // Pour les messages d'erreur
+        if (isset($_SESSION['error'])) {
+            echo "<div class='error'>" . $_SESSION['error'] . "</div>";
+            unset($_SESSION['error']);
+        } ?>
         <div id="main">
             <main>
                 <?php
-                if (isset($_SESSION['message'])) {
-                    echo "<div class='message'>" . $_SESSION['message'] . "</div>";
-                    unset($_SESSION['message']); // Supprimez le message après l'avoir affiché
-                }
 
-                // Pour les messages d'erreur
-                if (isset($_SESSION['error'])) {
-                    echo "<div class='error'>" . $_SESSION['error'] . "</div>";
-                    unset($_SESSION['error']); // Supprimez le message après l'avoir affiché
-                } // var_dump($_SESSION);
                 $navigation = isset($_SESSION['id_user']) ? $nav : ''; ?>
-                <?php if ($_SESSION['id_user'] ?? '' == TRUE) {
-                    echo "Coucou" . " " . $_SESSION['prenom_user'];
-                ?><a href='index.php?controller=User&action=logout'><button class='log'>Se deconnecter</button></a><?php
-                                                                                                                };
-                                                                                                                    ?>
+
+                <?= $navigation ?>
                 <?= $content ?>
+
 
             </main>
 

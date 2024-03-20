@@ -57,7 +57,7 @@ class UserController extends Controller
                 $_SESSION['acces'] = TRUE;
 
                 $_SESSION['message'] = "Vous êtes connecté avec succès.";
-                header('location:' . $this->baseUrlSite . '');
+                header('location:' . $this->baseUrlSite . 'index.php?controller=User&action=index');
             } else {
                 $_SESSION['error'] = "Les informations de connexion sont incorrectes.";
                 header('location:' . $this->baseUrlSite . 'index.php?controller=User&action=inscription');
@@ -76,5 +76,10 @@ class UserController extends Controller
         session_destroy();
 
         header('location:' . $this->baseUrlSite . '');
+    }
+
+    public function index()
+    {
+        $this->render('user/index');
     }
 }
