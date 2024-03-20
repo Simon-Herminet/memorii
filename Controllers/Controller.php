@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Core\Validator;
 use App\Core\CSRFTokenManager;
 use App\Entities\Creation;
-use App\Models\CreationModel;
+use App\Models\UserModel;
 
 
 abstract class Controller
@@ -13,7 +13,7 @@ abstract class Controller
 
 
 
-    protected $baseUrlSite = "http://localhost:8888/Projet_EatBooker/Projet_EatBooker/Structure_MVC/public/"; //base d'url pour le Site
+    protected $baseUrlSite = "http://localhost:8888/projet_MEMORii_MVC/public/"; //base d'url pour le Site
 
 
 

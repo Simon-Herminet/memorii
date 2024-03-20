@@ -25,19 +25,33 @@
 
         <!---------- STRUCTURE HEADER --------------------- -->
         <header>
-            <img id="logo" src="../public/images/Memorii.svg">
+            <img id="logo" src="http://localhost:8888/projet_MEMORii_MVC/public/images/Memorii.svg">
         </header>
         <!-- ------------FIN HEADER---------------------- -->
 
 
         <!-- ---------------------------------FIN NAVIGATION--------------------------------------------------------- -->
         <div id="main">
-
-            <?php $navigation = isset($_SESSION['id_user']) ? $nav : ''; ?>
             <main>
+                <?php
+                if (isset($_SESSION['message'])) {
+                    echo "<div class='message'>" . $_SESSION['message'] . "</div>";
+                    unset($_SESSION['message']); // Supprimez le message après l'avoir affiché
+                }
 
-                <?= $navigation ?>
+                // Pour les messages d'erreur
+                if (isset($_SESSION['error'])) {
+                    echo "<div class='error'>" . $_SESSION['error'] . "</div>";
+                    unset($_SESSION['error']); // Supprimez le message après l'avoir affiché
+                } // var_dump($_SESSION);
+                $navigation = isset($_SESSION['id_user']) ? $nav : ''; ?>
+                <?php if ($_SESSION['id_user'] ?? '' == TRUE) {
+                    echo "Coucou" . " " . $_SESSION['prenom_user'];
+                ?><a href='index.php?controller=User&action=logout'><button class='log'>Se deconnecter</button></a><?php
+                                                                                                                };
+                                                                                                                    ?>
                 <?= $content ?>
+
             </main>
 
 
@@ -48,13 +62,19 @@
             <div id="menuFooter">
                 <ul id='listFooter'>
                     <li>
-                        <p>Mentions Légales</p>
+                        <a href="#">
+                            <p>Mentions Légales</p>
+                        </a>
                     </li>
                     <li>
-                        <p>Politique des données personnels</p>
+                        <a href="#">
+                            <p>Politique des données personnels</p>
+                        </a>
                     </li>
                     <li>
-                        <p>Plan du site</p>
+                        <a href="@">
+                            <p>Plan du site</p>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -78,9 +98,9 @@
 
 
     <!-- CONNEXION FICHIER SCRIPT.JS DANS DOSSIER JS -->
+    <script src="../public/js/script.js"></script>
 
 
-    <!-- CONNEXION js bootstrap -->
 
 
 </body>
