@@ -4,11 +4,11 @@ $title = 'MEMORii - Accueil';
 
 ?>
 <div id='login'>
-    <a href="#"><button class="log">
-            <h2> S'inscrire</h2>
+    <a href="index.php?controller=User&action=inscription"><button class="log">
+            <h3> S'inscrire</h2>
         </button></a>
-    <a href="#"><button class="log">
-            <h2> Se Connecter</h2>
+    <a href="index.php?controller=User&action=inscription"><button class="log">
+            <h3> Se Connecter</h2>
         </button></a>
 
 </div>
