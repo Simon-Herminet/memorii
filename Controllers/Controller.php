@@ -30,7 +30,7 @@ abstract class Controller
 
         // On inclu la nav avec le base.php 
         ob_start();
-        include dirname(__DIR__) . '/Views/nav.php';
+        include dirname(__DIR__) . '/Views/inc/nav.php';
         $nav = ob_get_clean();
 
         include dirname(__DIR__) . '/Views/base.php';

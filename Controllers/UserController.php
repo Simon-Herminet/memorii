@@ -36,6 +36,7 @@ class UserController extends Controller
                 // je stocke en session mon message de succès
                 $_SESSION['message'] = "Vous êtes inscrit avec succès. Vous pouvez vous connecter maintenant.";
                 header('location:' . $this->baseUrlSite . 'index.php?controller=User&action=inscription');
+
                 exit();
             }
         }

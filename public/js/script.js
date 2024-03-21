@@ -22,7 +22,7 @@
 //         alert("Merci de renseigner tous les champs du formulaire.")
 //     }
 // }
-
+// FORMDATA
 
 // Permet de generer un message si mot de passe invalide.
 document.addEventListener('DOMContentLoaded', function () {
@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
             emailMessage.style.color = 'red';
         }
     });
+
 });
 
 // Menu burger 
