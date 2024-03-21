@@ -20,9 +20,6 @@ $title = "Mettre a jour mon mot de passe";
                 </label>
                 <input class="mdp" type="password" name="new_mdp_user">
             </div>
-            <div class="form_group_message">
-                <span id="password-message"></span>
-            </div>
             <div class="form-group">
                 <label for="email">
                     <h4>Confirmez votre nouveau mot de passe :</h4>

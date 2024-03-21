@@ -23,6 +23,7 @@
 //     }
 // }
 
+
 // Permet de generer un message si mot de passe invalide.
 document.addEventListener('DOMContentLoaded', function () {
     var passwordInput = document.getElementById('mdp');

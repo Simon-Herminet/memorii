@@ -10,13 +10,14 @@ class UserController extends Controller
 {
 
 
-    // INSCRIPTION ET CONNEXION DU USER
+    //********************************************* */ INSCRIPTION ET CONNEXION USER***************************************************
+
 
     public function inscription()
     {
-
+        // Je recupere et conditionne par rapport au name de mon bouton
         if (isset($_POST['form_inscription'])) {
-            // Traitement du formulaire d'inscription
+            // je stocke mes $_POST
             $nomUser = $_POST['nom_user'] ?? '';
             $prenomUser = $_POST['prenom_user'] ?? '';
             $emailUser = $_POST['email_user'] ?? '';
@@ -32,32 +33,35 @@ class UserController extends Controller
 
                 $userModel = new UserModel();
                 $userModel->add($user);
-
+                // je stocke en session mon message de succès
                 $_SESSION['message'] = "Vous êtes inscrit avec succès. Vous pouvez vous connecter maintenant.";
                 header('location:' . $this->baseUrlSite . 'index.php?controller=User&action=inscription');
                 exit();
             }
-        } elseif (isset($_POST['form_connexion'])) {
+        }
+        // Je recupere et conditionne par rapport au name de mon bouton de connexion  
+        elseif (isset($_POST['form_connexion'])) {
             // Traitement du formulaire de connexion.
             $emailUser = $_POST['email_user'] ?? '';
             $mdpUser = $_POST['mdp_user'] ?? '';
 
             $userModel = new UserModel();
 
-            // Rechercher l'utilisateur par email
+            //********************************************* */ RECHERCHE USER EMAIL***************************************************
             $user = $userModel->find($emailUser);
 
             if ($user && password_verify($mdpUser, $user->getMdp_user())) {
-                // Stocker les informations de l'utilisateur dans la session
+                // Je stocke mes infos dans $_SESSION
                 $_SESSION['id_user'] = $user->getId_user();
                 $_SESSION['nom_user'] = $user->getNom_user();
                 $_SESSION['prenom_user'] = $user->getPrenom_user();
                 $_SESSION['email_user'] = $user->getEmail_user();
                 $_SESSION['acces'] = TRUE;
-
+                // Je genere et stock en session un message de succes
                 $_SESSION['message'] = "Vous êtes connecté avec succès.";
                 header('location:' . $this->baseUrlSite . 'index.php?controller=User&action=index');
             } else {
+                // Je genere et stock un message d'erreur
                 $_SESSION['error'] = "Les informations de connexion sont incorrectes.";
                 header('location:' . $this->baseUrlSite . 'index.php?controller=User&action=inscription');
                 exit();
@@ -69,7 +73,8 @@ class UserController extends Controller
     }
 
 
-    // DECONNEXION USER
+    //********************************************* */ DECONNEXION USER       ********************************************************
+
 
     public function logout()
     {
@@ -79,14 +84,17 @@ class UserController extends Controller
     }
 
 
-    // PAGE ACCUEIL USER CONNECTé
+    //********************************************* */ PAGE ACCUEIL USER CONNECTé  ***************************************************
+
     public function index()
     {
         $this->render('user/index');
     }
+    // Page a alimenter avec les differente liste de question et category.
 
 
-    // UPDATE DES INFOS USER
+    //********************************************* */ UPDATE INFO USER (SAUF MDP) ***************************************************
+
     public function updateForm()
     {
 
@@ -121,7 +129,8 @@ class UserController extends Controller
         $this->render('user/updateForm');
     }
 
-    // UPDATE MOT DE PASSE USER
+    //********************************************* */ UPDATE PASSWORD USER        ***************************************************
+
 
     public function updateMdp()
     {
@@ -130,22 +139,22 @@ class UserController extends Controller
             $old_mdp = $_POST['old_mdp_user'] ?? '';
             $new_mdp = $_POST['new_mdp_user'] ?? '';
             $confirm_new_mdp = $_POST['confirm_new_mdp_user'] ?? '';
-
+            // Je verifie que les deux nouveaux mot de passe correspondent.
             if ($new_mdp !== $confirm_new_mdp) {
                 echo "Les nouveaux mots de passe ne correspondent pas.";
                 return;
             }
 
-
+            // Je retrouve mon USER par rapport a son ID
             $userModel = new UserModel();
             $user = $userModel->findById($id_user);
-
+            // Je verifie que l'ancien mot de passe est celui entré en base de donnée.
             if (!password_verify($old_mdp, $user->getMdp_user())) {
                 echo "Mot de passe actuel incorrect.";
                 return;
             }
 
-            // Hash du nouveau mot de passe
+            // Si tout est ok, je hash le nouveau mot de passe.
             $hashed_new_mdp = password_hash($new_mdp, PASSWORD_DEFAULT);
 
             $user->setMdp_user($hashed_new_mdp);
@@ -164,7 +173,7 @@ class UserController extends Controller
                     method: 'POST',
                     credentials: 'same-origin',
                 }).then(response => {
-
+                    // Redirige l'utilisateur vers la page de connexion et inscription. 
                     window.location.href = "<?php echo $this->baseUrlSite . 'index.php?controller=User&action=inscription'; ?>";
                 }).catch(error => {
                     console.error('Erreur lors de la déconnexion:', error);
