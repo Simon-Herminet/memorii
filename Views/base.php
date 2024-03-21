@@ -7,7 +7,9 @@
     <title><?= $title ?></title>
 
     <!-- lien feuille de style -->
-
+    <!-- Réécriture url style.css -->
+    <!-- <link rel="stylesheet" href="http://localhost:8888/projet_MEMORii_MVC/public/style.css"> -->
+    <!-- Chemin absolu du css -->
     <link rel="stylesheet" href="style.css">
 
 
@@ -40,7 +42,13 @@
         if (isset($_SESSION['error'])) {
             echo "<div class='error'>" . "<h4>" . $_SESSION['error'] . "</h4>" . "</div>";
             unset($_SESSION['error']);
-        } ?>
+        }
+        if (isset($_SESSION['message'])) : ?>
+            <div class="alert alert-success">
+                <?= $_SESSION['message']; ?>
+            </div>
+            <?php unset($_SESSION['message']); ?>
+        <?php endif; ?>
         <div id="main">
             <main>
                 <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" id="menu-icon">
@@ -102,6 +110,8 @@
 
     <!-- CONNEXION FICHIER SCRIPT.JS DANS DOSSIER JS -->
     <script src="../public/js/script.js"></script>
+    <!-- Réécriture url pour fichier JS avec réécriture URL -->
+    <!-- <script src="http://localhost:8888/projet_MEMORii_MVC/public/js/script.js"></script> -->
 
 
 

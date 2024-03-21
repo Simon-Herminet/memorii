@@ -1,12 +1,7 @@
 <?php
 
 $title = "Inscription/Connexion";
-if (isset($_SESSION['message'])) : ?>
-    <div class="alert alert-success">
-        <?= $_SESSION['message']; ?>
-    </div>
-    <?php unset($_SESSION['message']); ?>
-<?php endif; ?>
+?>
 
 
 <div id="formAdd">
