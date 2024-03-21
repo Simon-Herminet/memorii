@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Entities;
+
 class question
 {
     private $id_question;
@@ -8,6 +10,8 @@ class question
     private $reponse_question;
     private $frequence_question;
     private $point_question;
+    private $id_user;
+    private $id_category;
 
     /**
      * Get the value of id_question
@@ -125,6 +129,26 @@ class question
     public function setPoint_question($point_question)
     {
         $this->point_question = $point_question;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of id_user
+     */
+    public function getId_user()
+    {
+        return $this->id_user;
+    }
+
+    /**
+     * Set the value of point_question
+     *
+     * @return  self
+     */
+    public function setId_user($id_user)
+    {
+        $this->id_user = $id_user;
 
         return $this;
     }

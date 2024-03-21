@@ -179,3 +179,55 @@ footer {
 /* FIN FOOTER */
 
 /* Menu burger */
+
+/* Question */
+td {
+    margin: 1%;
+}
+
+input.textQuestion {
+    width: 20em;
+}
+
+textarea {
+    width: 20em;
+    height: 7.5em;
+}
+
+tr.impair {
+    background-color: rgb(235, 233, 233);
+}
+
+tr.pair {
+    background-color: #ffffff;
+
+}
+
+.svgClickable {
+    width: 20px;
+    display: block;
+    margin: auto;
+    cursor: pointer
+}
+
+.svgClickable:hover {
+    fill: #FECC36;
+}
+
+path.iconeColor {
+    fill: #141735;
+}
+
+path:hover {
+    fill: #FECC36;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-bottom: #141735 0.02em solid;
+}
+
+.logQuestion {
+    width: 120px;
+}
