@@ -8,7 +8,7 @@ use Exception;
 
 class UserModel extends DbConnect
 {
-    // Connexion d'un utilisateur.
+    //********************************************* */ CONNEXION D'UN USER.***************************************************
 
     public function find($emailUser)
     {
@@ -32,7 +32,7 @@ class UserModel extends DbConnect
         }
     }
 
-    // Requete pour ajout d'un utilisateur.
+    //********************************************* */ AJOUT NEW USER.***************************************************
 
     public function add(User $user)
     {
@@ -52,7 +52,8 @@ class UserModel extends DbConnect
             echo 'erreur : ' . $e->getMessage();
         }
     }
-    // Requete pour update les info user(sauf MDP)
+    //********************************************* */ UPDATE USER (SAUF MDP).***************************************************
+
     public function updateInfo(User $majUser)
     {
         try {
@@ -71,7 +72,7 @@ class UserModel extends DbConnect
             echo "erreur :" . $e->getMessage();
         }
     }
-    // Requete pour trouver le user par ID
+    //********************************************* */ TROUVER USER PAR ID   ***************************************************
     public function findById($idUser)
     {
         try {
@@ -94,7 +95,7 @@ class UserModel extends DbConnect
         }
     }
 
-    // Requete pour changer le mot de passe. 
+    //********************************************* */ UPDATE PASSWORD USER ***************************************************
     public function updateMdp(User $user)
     {
         try {

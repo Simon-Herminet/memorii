@@ -1,4 +1,6 @@
 <?php
 $title = "page d'accueil";
 
-echo 'coucou';
+?>
+
+<h1> COUCOU PETIT PANDA</h1>
