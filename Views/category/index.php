@@ -63,6 +63,6 @@ $title = "Categories";
     </tbody>
 </table>
 
-<a href=" index.php?controller=question&action=addQuestion">
+<a href=" index.php?controller=category&action=addCategory">
     <h4>Ajouter une categorie</h4>
 </a>

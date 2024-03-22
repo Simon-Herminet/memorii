@@ -1,10 +1,13 @@
 <?php
 
+namespace App\Entities;
+
 class Category
 {
     private $id_category;
     private $titre_category;
     private $description_category;
+    private $id_user;
 
     /**
      * Get the value of id_category
@@ -62,6 +65,26 @@ class Category
     public function setDescription_category($description_category)
     {
         $this->description_category = $description_category;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of id_user
+     */
+    public function getId_user()
+    {
+        return $this->id_user;
+    }
+
+    /**
+     * Set the value of id_user
+     *
+     * @return  self
+     */
+    public function setId_user($id_user)
+    {
+        $this->id_user = $id_user;
 
         return $this;
     }
