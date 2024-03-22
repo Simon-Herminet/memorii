@@ -55,8 +55,44 @@ class QuestionController extends Controller
     }
 
     // ************************************ UPDATE QUESTION **************************************************************
+    public function formUpdate($id)
+    {
+        // Je recupere ma question grace a l'ID en GET
+        $id = $_GET['id'] ?? NULL;
+        $questionUpdate = new Question();
+        $questionUpdate->setId_question($id);
 
+        $questionModel = new QuestionModel();
+        $list = $questionModel->formUpdate($questionUpdate);
+        $this->render('question/updateQuestion', ['list' => $list]);
+    }
+    // ***************************************** TRAITEMENT FORM UPDATE QUESTION *********************************************
+    public function update($id)
+    {
+        $id = $_GET['id'] ?? NULL;
+
+        if (!empty($id)) {
+            $majQuestion = new Question();
+            $majQuestion->setId_question($id);
+
+            $majQuestion->setTitre_question($this->protected_values($_POST['titre_question']));
+            $majQuestion->setQuestion_question($this->protected_values($_POST['question_question']));
+            $majQuestion->setReponse_question($this->protected_values($_POST['reponse_question']));
+            $majQuestion->setId_user($this->protected_values($_POST['id_user']));
+
+            $questionModel = new QuestionModel();
+            $questionModel->traitementFormUpdate($majQuestion);
+
+
+            $_SESSION['message'] = "La question a bien été modifiée";
+            header('Location: index.php?controller=question&action=index');
+        } else {
+            $_SESSION['error'] = "Problème lors de la mise à jour de la question.";
+            header('Location: index.php?controller=question&action=index');
+        }
+    }
     // ************************************ DELETE QUESTION **************************************************************
+
     public function deleteQuestion($id)
     {
         if ($id) {

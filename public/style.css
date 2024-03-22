@@ -226,6 +226,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     border-bottom: #141735 0.02em solid;
+    border-top: #141735 0.02em solid;
 }
 
 .logQuestion {

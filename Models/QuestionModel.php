@@ -53,8 +53,40 @@ class QuestionModel extends DbConnect
             echo 'Erreur : ' . $e->getMessage();
         }
     }
-    // ************************************************ UPDATE QUESTION  ********************************************** 
+    // ************************************************ FINDById QUESTION  ********************************************** 
 
+
+    public function formUpdate(Question $questionModel)
+    {
+        try {
+            $this->request = $this->connection->prepare("SELECT * FROM question_memorii WHERE id_question=:id_question");
+            $this->request->bindValue(":id_question", $questionModel->getId_question());
+            $this->request->execute();
+
+            $list = $this->request->fetch(PDO::FETCH_ASSOC);
+            return $list;
+        } catch (Exception $e) {
+            echo "erreur :" . $e->getMessage();
+        }
+    }
+
+
+    // ************************************************ UPDATE QUESTION  ********************************************** 
+    public function traitementFormUpdate(Question $majQuestion)
+    {
+        try {
+            $this->request = $this->connection->prepare("UPDATE question_memorii
+            SET titre_question=:titre_question , question_question=:question_question, reponse_question=:reponse_question
+            WHERE id_question=:id_question");
+            $this->request->bindValue(':id_question', $majQuestion->getId_question());
+            $this->request->bindValue(':titre_question', $majQuestion->getTitre_question());
+            $this->request->bindValue(':question_question', $majQuestion->getQuestion_question());
+            $this->request->bindValue(':reponse_question', $majQuestion->getReponse_question());
+            $this->request->execute();
+        } catch (Exception $e) {
+            echo "erreur:" . $e->getMessage();
+        }
+    }
 
     // ************************************************ DELETE QUESTION  ********************************************** 
 
