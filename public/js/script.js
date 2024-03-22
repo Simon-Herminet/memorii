@@ -24,7 +24,8 @@
 // }
 // FORMDATA
 
-// Permet de generer un message si mot de passe invalide.
+// ******************************************Permet de generer un message si mot de passe invalide. ******************************
+
 document.addEventListener('DOMContentLoaded', function () {
     var passwordInput = document.getElementById('mdp');
     var passwordMessage = document.getElementById('password-message');
@@ -43,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// Permet de generer un message si adresse mail invalide.
+// **********************************  Permet de generer un message si adresse mail invalide. *****************************************
 
 document.addEventListener('DOMContentLoaded', function () {
     var emailInput = document.getElementById('email');
@@ -64,7 +65,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-// Menu burger 
+//****************************** */ Gestion redirection avec boite confirm pour suppression question *********************************
+
+document.querySelectorAll('.delete-question-link').forEach(function (link) {
+    link.addEventListener('click', function (event) {
+
+        if (!confirm('Êtes-vous sûr de vouloir supprimer cette question ?')) {
+            event.preventDefault();
+        }
+    });
+});
+
+
 
 
 
