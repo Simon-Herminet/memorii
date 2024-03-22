@@ -58,5 +58,18 @@ class QuestionModel extends DbConnect
 
     // ************************************************ DELETE QUESTION  ********************************************** 
 
+    public function delete($id)
+    {
+        try {
+            $this->request = $this->connection->prepare(
+                "DELETE FROM question_memorii WHERE id_question = :id_question"
+            );
 
+            $this->request->bindValue(':id_question', $id);
+
+            $this->request->execute();
+        } catch (Exception $e) {
+            echo 'Erreur : ' . $e->getMessage();
+        }
+    }
 }

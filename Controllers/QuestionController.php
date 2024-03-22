@@ -53,4 +53,19 @@ class QuestionController extends Controller
             $this->render('question/addQuestion');
         }
     }
+
+    // ************************************ UPDATE QUESTION **************************************************************
+
+    // ************************************ DELETE QUESTION **************************************************************
+    public function deleteQuestion($id)
+    {
+        if ($id) {
+            $questionModel = new QuestionModel();
+            $questionModel->delete($id);
+
+            $_SESSION['message'] = "La question a été supprimée avec succès.";
+            header('Location: index.php?controller=question&action=index');
+            exit;
+        }
+    }
 }
