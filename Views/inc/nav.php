@@ -8,7 +8,7 @@
         <li><a href="index.php?controller=Question&action=index">
                 <h4 class="navli">Questions</h4>
             </a></li>
-        <li><a href="#">
+        <li><a href="index.php?controller=Category&action=index">
                 <h4 class="navli">Catégories</h4>
             </a></li>
         <li><a href="#">
