@@ -104,4 +104,18 @@ class CategoryController extends Controller
             header('Location: index.php?controller=category&action=index');
         }
     }
+
+    // ****************************** DELETE CATEGORY **************************************************************
+
+    public function deleteCategory($id)
+    {
+        if ($id) {
+            $categoryModel = new CategoryModel();
+            $categoryModel->delete($id);
+
+            $_SESSION['message'] = "La categorie a été supprimée avec succès.";
+            header('Location: index.php?controller=category&action=index');
+            exit;
+        }
+    }
 }
