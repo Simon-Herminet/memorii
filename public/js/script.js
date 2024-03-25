@@ -76,7 +76,15 @@ document.querySelectorAll('.delete-question-link').forEach(function (link) {
     });
 });
 
-// ************************************ Redirection avec message alert pour update donnée USER *****************************************
+// ************************************ Redirection avec message alert pour delete donnée category *****************************************
+document.querySelectorAll('.delete-category-link').forEach(function (link) {
+    link.addEventListener('click', function (event) {
+
+        if (!confirm('Êtes-vous sûr de vouloir supprimer cette categorie ?')) {
+            event.preventDefault();
+        }
+    });
+});
 
 
 

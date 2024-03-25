@@ -88,4 +88,20 @@ class CategoryModel extends DbConnect
             echo "erreur:" . $e->getMessage();
         }
     }
+    // ************************************************ DELETE QUESTION  ********************************************** 
+
+    public function delete($id)
+    {
+        try {
+            $this->request = $this->connection->prepare(
+                "DELETE FROM category_memorii WHERE id_category = :id_category"
+            );
+
+            $this->request->bindValue(':id_category', $id);
+
+            $this->request->execute();
+        } catch (Exception $e) {
+            echo 'Erreur : ' . $e->getMessage();
+        }
+    }
 }
