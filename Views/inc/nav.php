@@ -12,7 +12,7 @@
                 <h4 class="navli">Catégories</h4>
             </a></li>
         <li><a href="#">
-                <h4 class="navli">Quiz</h4>
+                <h4 class="navli">Quiizz</h4>
             </a></li>
         <li><a href="#">
                 <h4 class="navli">Statistiques</h4>
