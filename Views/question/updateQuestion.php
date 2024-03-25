@@ -1,12 +1,12 @@
 <?php
-$title = "J'ajoute une question";
+$title = "Modifier une question";
 ?>
 <?php
-echo '<pre>';
-var_dump($list);
+// echo '<pre>';
+// var_dump($list);
 
 
-echo '</pre>';
+// echo '</pre>';
 ?>
 <div id="formAdd">
     <div id="addForm">

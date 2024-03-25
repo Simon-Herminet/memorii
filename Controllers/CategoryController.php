@@ -57,7 +57,7 @@ class CategoryController extends Controller
             $nouvelleCategory->setId_user($this->protected_values($id_user));
 
 
-            // J'ajoute la question à la base de données
+            // J'ajoute la category à la base de données
             $categoryModel = new CategoryModel();
             $categoryModel->add($nouvelleCategory);
 
@@ -65,6 +65,43 @@ class CategoryController extends Controller
             header('Location:index.php?controller=category&action=index');
         } else {
             $this->render('category/addCategory');
+        }
+    }
+
+    // ******************************************* FINDByID (Alimentation du formulaire de UPDATE) ************************************************************************
+    public function formUpdate($id)
+    {
+        // Je recupere ma question grace a l'ID en GET
+        $id = $_GET['id'] ?? NULL;
+        $categoryUpdate = new Category();
+        $categoryUpdate->setId_category($id);
+
+        $questionModel = new CategoryModel();
+        $list = $questionModel->formUpdate($categoryUpdate);
+        $this->render('category/updateCategory', ['list' => $list]);
+    }
+    // ******************************************* TRAITEMENT UPDATE ***********************************************************************
+    public function update($id)
+    {
+        $id = $_GET['id'] ?? NULL;
+
+        if (!empty($id)) {
+            $majCategory = new Category();
+            $majCategory->setId_category($id);
+
+            $majCategory->setTitre_category($this->protected_values($_POST['titre_category']));
+            $majCategory->setDescription_category($this->protected_values($_POST['description_category']));
+            $majCategory->setId_user($this->protected_values($_POST['id_user']));
+
+            $categoryModel = new CategoryModel();
+            $categoryModel->traitementFormUpdate($majCategory);
+
+
+            $_SESSION['message'] = "La categorie a bien été modifiée";
+            header('Location: index.php?controller=category&action=index');
+        } else {
+            $_SESSION['error'] = "Problème lors de la mise à jour de la categorie.";
+            header('Location: index.php?controller=category&action=index');
         }
     }
 }
