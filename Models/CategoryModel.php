@@ -104,4 +104,6 @@ class CategoryModel extends DbConnect
             echo 'Erreur : ' . $e->getMessage();
         }
     }
+
+    // ************************************************
 }

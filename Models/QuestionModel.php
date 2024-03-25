@@ -104,4 +104,40 @@ class QuestionModel extends DbConnect
             echo 'Erreur : ' . $e->getMessage();
         }
     }
+    // ********************************************** SELECT QUESTION WITHOUT CATEGORY ***********************************
+    public function getQuestionsWithoutCategory($userId)
+    {
+        try {
+            $this->request = $this->connection->prepare(
+                "SELECT * FROM question_memorii WHERE id_category IS NULL AND id_user = :user_id"
+            );
+            $this->request->bindValue(":user_id", $userId);
+            $this->request->execute();
+
+            // Récupérer les résultats de la requête
+            $questions = $this->request->fetchAll(PDO::FETCH_ASSOC);
+            return $questions;
+        } catch (Exception $e) {
+            echo "Erreur :" . $e->getMessage();
+            return false;
+        }
+    }
+
+    // ******************************************* ASSIGN CATEGORIE TO QUESTION *******************************************
+
+    public function assignCategoryToQuestion($questionId, $categoryId)
+    {
+        try {
+            $this->request = $this->connection->prepare(
+                "UPDATE question_memorii SET id_category = :id_category WHERE id_question = :id_question"
+            );
+
+            $this->request->bindValue(':id_question', $questionId);
+            $this->request->bindValue(':id_category', $categoryId);
+
+            $this->request->execute();
+        } catch (Exception $e) {
+            echo 'Erreur : ' . $e->getMessage();
+        }
+    }
 }

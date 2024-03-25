@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Core\Validator;
 use App\Models\CategoryModel;
 use App\Entities\Category;
+use App\Models\QuestionModel;
 
 class CategoryController extends Controller
 {
@@ -33,6 +34,9 @@ class CategoryController extends Controller
                     'description_category' => $category['description_category'],
                     'number_of_questions' => $category['number_of_questions']
                 ];
+                // echo '<pre>';
+                // var_dump($uniqueCategories[$categoryId]);
+                // echo '</pre>';
             }
         }
 
@@ -118,4 +122,6 @@ class CategoryController extends Controller
             exit;
         }
     }
+    // **************************** ADD QUESTION A CATEGORY ********************************************************
+
 }

@@ -104,4 +104,53 @@ class QuestionController extends Controller
             exit;
         }
     }
+
+    // ********************************** FIND QUESTION SANS CATEGORY **************************************************
+
+    public function questionsWithoutCategory($id)
+    {
+        $id = $_GET['id'] ?? null;
+
+        $userId = $_SESSION['id_user'] ?? null;
+        // var_dump($userId);
+        // var_dump($id);
+        // die;
+        if ($userId && $id) {
+            $questionModel = new QuestionModel();
+            $questions = $questionModel->getQuestionsWithoutCategory($userId);
+
+            if ($questions) {
+
+                $this->render('question/questionWithoutCategory', ['questions' => $questions]);
+            } else {
+                echo "Aucune question sans catégorie n'a été trouvée.";
+            }
+        }
+    }
+    public function assignCategory()
+    {
+        $questionIds = $_POST['id_question'] ?? '';
+        $categoryId = $_POST['id_category'] ?? '';
+
+        // Si id_question est une chaîne de caractères (une seule question sélectionnée)
+        if (!is_array($questionIds)) {
+            $questionIds = [$questionIds]; // Convertir en tableau pour simplifier le traitement
+        }
+
+        // Vérifier si categoryId et questionIds ne sont pas vides
+        if (!empty($categoryId) && !empty($questionIds)) {
+            $questionModel = new QuestionModel();
+
+            foreach ($questionIds as $questionId) {
+                $questionModel->assignCategoryToQuestion($questionId, $categoryId);
+            }
+
+            $_SESSION['message'] = "Les questions ont été assignées à la catégorie avec succès.";
+            header('Location:index.php?controller=Category&action=index');
+            exit();
+        } else {
+            $_SESSION['error'] = "Veuillez sélectionner une catégorie et au moins une question.";
+            // Rediriger vers une autre page ou afficher un message d'erreur selon vos besoins
+        }
+    }
 }
