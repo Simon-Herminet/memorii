@@ -57,4 +57,35 @@ class CategoryModel extends DbConnect
             echo 'Erreur : ' . $e->getMessage();
         }
     }
+
+    // *******************************FINDByID CATEGORY**************************************************
+    public function formUpdate(Category $categoryModel)
+    {
+        try {
+            $this->request = $this->connection->prepare("SELECT * FROM category_memorii WHERE id_category=:id_category");
+            $this->request->bindValue(":id_category", $categoryModel->getId_category());
+            $this->request->execute();
+
+            $list = $this->request->fetch(PDO::FETCH_ASSOC);
+            return $list;
+        } catch (Exception $e) {
+            echo "erreur :" . $e->getMessage();
+        }
+    }
+
+    // ************************************************ UPDATE CATEGORY ********************************************** 
+    public function traitementFormUpdate(Category $majCategory)
+    {
+        try {
+            $this->request = $this->connection->prepare("UPDATE category_memorii
+            SET titre_category=:titre_category , description_category=:description_category
+            WHERE id_category=:id_category");
+            $this->request->bindValue(':id_category', $majCategory->getId_category());
+            $this->request->bindValue(':titre_category', $majCategory->getTitre_category());
+            $this->request->bindValue(':description_category', $majCategory->getDescription_category());
+            $this->request->execute();
+        } catch (Exception $e) {
+            echo "erreur:" . $e->getMessage();
+        }
+    }
 }
