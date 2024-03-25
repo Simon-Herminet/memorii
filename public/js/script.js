@@ -76,6 +76,8 @@ document.querySelectorAll('.delete-question-link').forEach(function (link) {
     });
 });
 
+// ************************************ Redirection avec message alert pour update donnée USER *****************************************
+
 
 
 
