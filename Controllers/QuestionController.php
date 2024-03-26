@@ -36,7 +36,7 @@ class QuestionController extends Controller
             $question = $_POST['question_question'] ?? '';
             $reponse = $_POST['reponse_question'] ?? '';
             $id_user = $_SESSION['id_user'];
-            $category_id = $_POST['category_id'] ?? '';
+            $category_id = !empty($_POST['category_id']) ? $_POST['category_id'] : null; // Si le champ de catégorie est vide, $category_id est null
 
             // Créer un objet Question avec les données du formulaire
             $nouvelleQuestion = new Question();
@@ -44,11 +44,10 @@ class QuestionController extends Controller
             $nouvelleQuestion->setReponse_question($this->protected_values($reponse));
             $nouvelleQuestion->setId_user($this->protected_values($id_user));
 
-            // Ajouter la question à la base de données avec la catégorie sélectionnée
+            // Ajouter la question à la base de données avec la catégorie sélectionnée (ou null si non sélectionnée)
             $questionModel = new QuestionModel();
             $questionModel->add($nouvelleQuestion, $category_id);
-            // var_dump($questionModel);
-            // die;
+
             $_SESSION['message'] = "La question a été ajoutée avec succès.";
             header('Location:index.php?controller=question&action=index');
             exit;
@@ -56,29 +55,6 @@ class QuestionController extends Controller
 
         $this->render('question/addQuestion', ['categories' => $categories]);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     // ************************************ UPDATE QUESTION **************************************************************
