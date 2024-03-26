@@ -140,4 +140,19 @@ class QuestionModel extends DbConnect
             echo 'Erreur : ' . $e->getMessage();
         }
     }
+
+    // ******************************************* REPLACE CATEGORIE TO QUESTION ***********************************************
+    public function replaceCategoryToQuestion($categoryId)
+    {
+        try {
+            $this->request = $this->connection->prepare(
+                "UPDATE question_memorii SET id_category = NULL WHERE id_category = :id_category"
+            );
+
+            $this->request->bindValue(':id_category', $categoryId);
+            $this->request->execute();
+        } catch (Exception $e) {
+            echo 'Erreur : ' . $e->getMessage();
+        }
+    }
 }

@@ -123,7 +123,8 @@ class QuestionController extends Controller
 
                 $this->render('question/questionWithoutCategory', ['questions' => $questions]);
             } else {
-                echo "Aucune question sans catégorie n'a été trouvée.";
+                $_SESSION['message'] = "Aucune question sans categorie n'a été trouvé";
+                header('Location: index.php?controller=category&action=index');
             }
         }
     }

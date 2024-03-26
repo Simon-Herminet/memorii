@@ -12,10 +12,10 @@ $title = "Categories";
                 <p>Description</p>
             </th>
             <th>
-                <p>Nombre de question</p>
+                <p>Nombre de questions</p>
             </th>
             <th>
-                <p>Ajouter des questions</p>
+                <p>Ajouter des questions à la categorie</p>
             </th>
             <th>
                 <p>Modifier</p>

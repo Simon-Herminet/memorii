@@ -115,6 +115,10 @@ class CategoryController extends Controller
     {
         if ($id) {
             $categoryModel = new CategoryModel();
+            $questionModel = new QuestionModel();
+            // Je retire le lien entre la catégory et les question
+            $questionModel->replaceCategoryToQuestion($id);
+            // Je delete la category. 
             $categoryModel->delete($id);
 
             $_SESSION['message'] = "La categorie a été supprimée avec succès.";
