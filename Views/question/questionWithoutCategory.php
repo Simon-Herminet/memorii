@@ -12,10 +12,10 @@ $title = "Ajouter des questions à la catégorie";
                     <p>Sélectionner</p>
                 </th>
                 <th>
-                    <p>Titre de la question</p>
+                    <p>Question</p>
                 </th>
                 <th>
-                    <p>Question</p>
+                    <p>Reponse </p>
                 </th>
             </tr>
         </thead>
@@ -26,14 +26,15 @@ $title = "Ajouter des questions à la catégorie";
                     <td class="tabQuestion">
                         <input type="checkbox" id="<?php echo $question['id_question']; ?>" name="id_question[]" value='<?php echo $question['id_question']; ?>'>
                     </td>
+
                     <td class="tabQuestion">
                         <p>
-                            <label for="titre_question"><?php echo $question['titre_question']; ?></label>
+                            <label for="<?php echo $question['id_question']; ?>"><?php echo $question['question_question']; ?></label>
                         </p>
                     </td>
                     <td class="tabQuestion">
                         <p>
-                            <label for="<?php echo $question['id_question']; ?>"><?php echo $question['question_question']; ?></label>
+                            <label for="titre_question"><?php echo $question['reponse_question']; ?></label>
                         </p>
                     </td>
                 </tr>

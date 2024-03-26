@@ -45,6 +45,7 @@
                     <h4>Catégorie :</h4>
                 </label>
                 <select id="category" class="catSelect" name="category_id">
+                    <option value="">Sélectionner une catégorie (facultatif)</option>
                     <?php foreach ($categories as $list) : ?>
                         <p>
                             <option value="<?php echo $list['id_category']; ?>">
