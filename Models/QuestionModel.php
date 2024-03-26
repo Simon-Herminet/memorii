@@ -156,4 +156,21 @@ class QuestionModel extends DbConnect
             echo 'Erreur : ' . $e->getMessage();
         }
     }
+
+    // ************************************************** RECUPERER LES 5 DERNIERES QUESTIONS *******************************************
+    public function getLatestQuestions($id_user)
+    {
+        try {
+            $this->request = $this->connection->prepare(
+                "SELECT * FROM question_memorii WHERE id_user = :id_user ORDER BY id_question DESC LIMIT 4"
+            );
+            $this->request->bindValue(':id_user', $id_user);
+            $this->request->execute();
+
+            return $this->request->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            echo 'Erreur : ' . $e->getMessage();
+            return [];
+        }
+    }
 }

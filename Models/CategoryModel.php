@@ -116,4 +116,20 @@ class CategoryModel extends DbConnect
             echo 'Erreur : ' . $e->getMessage();
         }
     }
+    // **************************************** FIND 5 DERNIERE CATEGORY CREE **************************************************
+    public function getLatestCategories($id_user)
+    {
+        try {
+            $this->request = $this->connection->prepare(
+                "SELECT * FROM category_memorii WHERE id_user = :id_user ORDER BY id_category DESC LIMIT 4"
+            );
+            $this->request->bindValue(':id_user', $id_user);
+            $this->request->execute();
+
+            return $this->request->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            echo 'Erreur : ' . $e->getMessage();
+            return [];
+        }
+    }
 }

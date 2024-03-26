@@ -254,3 +254,40 @@ table {
     border: solid 0.02em #141735;
     border-radius: 0% 0.93em 0.93em 0%;
 }
+
+#homePage {
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.home {
+    border: #141735 solid 0.02em;
+    border-radius: 0% 0.93em 0.93em 0%;
+    margin: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.homeContent {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.content {
+    border-top: #e0dede solid 0.02em;
+    background-color: #ffffff;
+}
+
+.titleHome {
+    text-align: center;
+}
+
+.textContent {
+    word-spacing: 0.1em;
+    line-height: 1.5em;
+}
