@@ -42,7 +42,7 @@ class CategoryModel extends DbConnect
         try {
 
             $this->request = $this->connection->prepare(
-                "INSERT INTO category_memorii(titre_category, description_category, id_user)
+                "INSERT INTO category_memorii(titre_category, description_category, id_user, id_category)
                 VALUES(:titre_category, :description_category, :id_user)"
             );
 
@@ -105,5 +105,15 @@ class CategoryModel extends DbConnect
         }
     }
 
-    // ************************************************
+    // ************************************************ FIND CATEGORY ****************************************************
+    public function getAllCategories()
+    {
+        try {
+            $this->request = $this->connection->prepare("SELECT id_category, titre_category FROM category_memorii");
+            $this->request->execute();
+            return $this->request->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            echo 'Erreur : ' . $e->getMessage();
+        }
+    }
 }

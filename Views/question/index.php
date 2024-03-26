@@ -8,7 +8,7 @@ $title = "Question";
     <thead>
         <tr>
             <th>
-                <p>Titre</p>
+                <p>Catégorie</p>
             </th>
             <th>
                 <p>Question</p>
@@ -31,7 +31,7 @@ $title = "Question";
             <tr class="<?php echo $rowClass; ?>">
 
                 <td>
-                    <p><?php echo '<p>' . $question['titre_question'];
+                    <p><?php echo '<p>' . $question['titre_category'];
                         '</p>' ?></h3>
                 <td>
                     <p><?php echo $question['question_question']; ?></p>
