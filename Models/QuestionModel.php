@@ -155,4 +155,5 @@ class QuestionModel extends DbConnect
             echo 'Erreur : ' . $e->getMessage();
         }
     }
+
 }
