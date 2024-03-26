@@ -15,8 +15,10 @@ class QuestionModel extends DbConnect
     {
         try {
             $this->request = $this->connection->prepare(
-                "SELECT * FROM question_memorii 
-            WHERE id_user = :id_user"
+                "SELECT q.*, c.titre_category
+            FROM question_memorii q
+            LEFT JOIN category_memorii c ON q.id_category = c.id_category
+            WHERE q.id_user = :id_user"
             );
             $this->request->bindValue(':id_user', $id_user);
             $this->request->execute();
@@ -30,29 +32,28 @@ class QuestionModel extends DbConnect
         }
     }
 
+
     // ************************************************ AJOUT QUESTION ********************************************************** 
 
-    public function add(Question $question)
+    public function add(Question $question, $category_id)
     {
         try {
-
             $this->request = $this->connection->prepare(
-                "INSERT INTO question_memorii(titre_question, question_question, reponse_question, id_user)
-                VALUES(:titre_question, :question_question, :reponse_question, :id_user)"
+                "INSERT INTO question_memorii(question_question, reponse_question, id_user, id_category)
+                VALUES(:question_question, :reponse_question, :id_user, :id_category)"
             );
 
-            $this->request->bindValue(':titre_question', $question->getTitre_question());
             $this->request->bindValue(':question_question', $question->getQuestion_question());
             $this->request->bindValue(':reponse_question', $question->getReponse_question());
             $this->request->bindValue(':id_user', $question->getId_user());
-
+            $this->request->bindValue(':id_category', $category_id);
 
             $this->request->execute();
         } catch (Exception $e) {
-
             echo 'Erreur : ' . $e->getMessage();
         }
     }
+
     // ************************************************ FINDById QUESTION  ********************************************** 
 
 
@@ -155,5 +156,4 @@ class QuestionModel extends DbConnect
             echo 'Erreur : ' . $e->getMessage();
         }
     }
-
 }

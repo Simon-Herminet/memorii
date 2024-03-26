@@ -248,3 +248,9 @@ table {
 
 
 }
+
+.catSelect {
+    background-color: #ffffff;
+    border: solid 0.02em #141735;
+    border-radius: 0% 0.93em 0.93em 0%;
+}
