@@ -129,18 +129,20 @@ class QuestionController extends Controller
     }
     public function assignCategory()
     {
+        // Je declare mes variables
         $questionIds = $_POST['id_question'] ?? '';
         $categoryId = $_POST['id_category'] ?? '';
 
-        // Si id_question est une chaîne de caractères (une seule question sélectionnée)
+        // Je stockes mes ID dans un tableau
         if (!is_array($questionIds)) {
-            $questionIds = [$questionIds]; // Convertir en tableau pour simplifier le traitement
+            $questionIds = [$questionIds];
+            var_dump($questionIds);
         }
 
-        // Vérifier si categoryId et questionIds ne sont pas vides
+        // Je conditionne
         if (!empty($categoryId) && !empty($questionIds)) {
             $questionModel = new QuestionModel();
-
+            // Je boucle pour pouvoir repeter la requete autant de fois que j'ai de question.
             foreach ($questionIds as $questionId) {
                 $questionModel->assignCategoryToQuestion($questionId, $categoryId);
             }
@@ -150,7 +152,6 @@ class QuestionController extends Controller
             exit();
         } else {
             $_SESSION['error'] = "Veuillez sélectionner une catégorie et au moins une question.";
-            // Rediriger vers une autre page ou afficher un message d'erreur selon vos besoins
         }
     }
 }
