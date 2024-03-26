@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Core\Validator;
 use App\Entities\User;
 use App\Models\UserModel;
+use App\Models\CategoryModel;
+use App\Models\QuestionModel;
 
 class UserController extends Controller
 {
@@ -89,9 +91,18 @@ class UserController extends Controller
 
     public function index()
     {
-        $this->render('user/index');
+        $id_user = $_SESSION['id_user'];
+        // Récupérer les 5 dernières questions
+        $questionModel = new QuestionModel();
+        $latestQuestions = $questionModel->getLatestQuestions($id_user);
+
+        // Récupérer les 5 dernières catégories
+        $categoryModel = new CategoryModel();
+        $latestCategories = $categoryModel->getLatestCategories($id_user);
+
+
+        $this->render('user/index', ['latestQuestions' => $latestQuestions, 'latestCategories' => $latestCategories]);
     }
-    // Page a alimenter avec les differente liste de question et category.
 
 
     //********************************************* */ UPDATE INFO USER (SAUF MDP) ***************************************************
