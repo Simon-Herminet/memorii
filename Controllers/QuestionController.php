@@ -158,4 +158,23 @@ class QuestionController extends Controller
             $_SESSION['error'] = "Veuillez sélectionner une catégorie et au moins une question.";
         }
     }
+
+    // ************************************* RECHERCHE EN ASYNCHRONE *************************************************************
+    public function search($searchText)
+    { {
+            if (isset($_GET['query'])) {
+                $searchText = $_GET['query'];
+
+
+                $questionModel = new QuestionModel();
+                $results = $questionModel->searchQuestions($searchText);
+
+
+                echo json_encode($results);
+            } else {
+
+                echo json_encode([]);
+            }
+        }
+    }
 }

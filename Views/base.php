@@ -110,6 +110,7 @@
 
     <!-- CONNEXION FICHIER SCRIPT.JS DANS DOSSIER JS -->
     <script src="../public/js/script.js"></script>
+    <script src="../public/js/asynch.js"></script>
     <!-- Réécriture url pour fichier JS avec réécriture URL -->
     <!-- <script src="http://localhost:8888/projet_MEMORii_MVC/public/js/script.js"></script> -->
 

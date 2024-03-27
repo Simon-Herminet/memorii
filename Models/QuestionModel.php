@@ -173,4 +173,24 @@ class QuestionModel extends DbConnect
             return [];
         }
     }
+
+    // ******************************* RECHERCHE EN ASYNCHRONE **************************************************
+    public function searchQuestions($searchText)
+    {
+        try {
+            $this->request = $this->connection->prepare(
+                "SELECT * FROM question_memorii 
+            WHERE  question_question LIKE :searchText"
+            );
+            $this->request->bindValue(':searchText', '%' . $searchText . '%');
+            $this->request->execute();
+
+            // Retourner les résultats de la recherche
+            return $this->request->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+
+            echo 'Erreur : ' . $e->getMessage();
+            return [];
+        }
+    }
 }
