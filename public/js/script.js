@@ -86,6 +86,13 @@ document.querySelectorAll('.delete-category-link').forEach(function (link) {
     });
 });
 
+// ********************************** Confirmation suppression compte **********************************************************************
+
+function confirmDelete() {
+    const confirmation = confirm("Êtes-vous sûr de vouloir supprimer votre compte ? Cette démarche est irréversible.");
+    return confirmation;
+}
+
 
 
 

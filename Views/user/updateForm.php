@@ -32,11 +32,15 @@ $title = "Modifier mes informations personnelles";
                 <a href="index.php?controller=User&action=updateMdp">
                     <h4>Modifier mon mot de passe ?</h4>
                 </a>
-                <div class="form_group_message">
-                    <span id="password-message"></span>
-                </div>
-                <button type="submit" class="btn-envoyer">
-                    <h4>Envoyer</h4>
-                </button>
+                <div class="form-group">
+                    <a href="index.php?controller=User&action=deleteAccount" onclick="return confirmDelete();">
+                        <h4>Supprimer mon compte?</h4>
+                    </a>
+                    <div class="form_group_message">
+                        <span id="password-message"></span>
+                    </div>
+                    <button type="submit" class="btn-envoyer">
+                        <h4>Envoyer</h4>
+                    </button>
         </form>
     </div>

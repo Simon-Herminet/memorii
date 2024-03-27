@@ -25,6 +25,7 @@ class UserModel extends DbConnect
             $user->setPrenom_user($result->prenom_user);
             $user->setEmail_user($result->email_user);
             $user->setMdp_user($result->mdp_user);
+            $user->setStatus_user($result->status_user);
             return $user;
         } catch (Exception $e) {
             echo 'Erreur : ' . $e->getMessage();
@@ -108,6 +109,29 @@ class UserModel extends DbConnect
             $this->request->execute();
         } catch (Exception $e) {
             echo "Erreur :" . $e->getMessage();
+        }
+    }
+    public function updateAnonymeAccount(User $user)
+    {
+        try {
+            // Préparer la requête SQL
+            $this->request = $this->connection->prepare(
+                "UPDATE user_memorii SET nom_user=:nom_user, prenom_user=:prenom_user, email_user=:email_user, mdp_user=:mdp_user, status_user=:status_user
+                WHERE id_user=:id_user"
+            );
+
+            // Lier les valeurs aux marqueurs de position
+            $this->request->bindValue(':id_user', $user->getId_user());
+            $this->request->bindValue(':nom_user', $user->getNom_user());
+            $this->request->bindValue(':prenom_user', $user->getPrenom_user());
+            $this->request->bindValue(':email_user', $user->getEmail_user());
+            $this->request->bindValue(':mdp_user', $user->getMdp_user());
+            $this->request->bindValue(':status_user', $user->getStatus_user());
+
+            // Exécuter la requête
+            $this->request->execute();
+        } catch (Exception $e) {
+            echo "Erreur:" . $e->getMessage();
         }
     }
 }

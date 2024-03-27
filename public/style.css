@@ -160,6 +160,28 @@ label {
     background-color: #FECC36;
 }
 
+.btn-envoyer-index {
+    float: right;
+    background-color: #ffffff;
+    border: solid 0.02em #141735;
+    cursor: pointer;
+    width: 20em;
+    height: 2em;
+    border-radius: 0% 0.93em 0.93em 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2%;
+}
+
+.btn-envoyer-index:hover {
+    background-color: #FECC36;
+}
+
+.lien-envoyer-index:hover {
+    color: #141735;
+}
+
 /* FOOTER */
 footer {
     text-align: center;
