@@ -10,6 +10,7 @@ class User
     private $prenom_user;
     private $email_user;
     private $mdp_user;
+    private $status_user;
 
     /**
      * Get the value of id_user
@@ -107,6 +108,26 @@ class User
     public function setMdp_user($mdp_user)
     {
         $this->mdp_user = $mdp_user;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of status_user
+     */
+    public function getStatus_user()
+    {
+        return $this->status_user;
+    }
+
+    /**
+     * Set the value of status_user
+     *
+     * @return  self
+     */
+    public function setStatus_user($status_user)
+    {
+        $this->status_user = $status_user;
 
         return $this;
     }

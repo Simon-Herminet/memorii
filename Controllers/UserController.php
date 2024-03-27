@@ -53,13 +53,14 @@ class UserController extends Controller
             //********************************************* */ RECHERCHE USER EMAIL***************************************************
             $user = $userModel->find($emailUser);
 
-            if ($user && password_verify($mdpUser, $user->getMdp_user())) {
+            if ($user && password_verify($mdpUser, $user->getMdp_user()) && $user->getStatus_user() == "actif") {
                 // Je stocke mes infos dans $_SESSION
                 $_SESSION['id_user'] = $user->getId_user();
                 $_SESSION['nom_user'] = $user->getNom_user();
                 $_SESSION['prenom_user'] = $user->getPrenom_user();
                 $_SESSION['email_user'] = $user->getEmail_user();
                 $_SESSION['acces'] = TRUE;
+                $_SESSION['status_user'] = $user->getStatus_user();
                 // Je genere et stock en session un message de succes
                 $_SESSION['message'] = "Vous êtes connecté avec succès.";
                 header('location:' . $this->baseUrlSite . 'index.php?controller=User&action=index');
@@ -134,7 +135,7 @@ class UserController extends Controller
 
                 // Rediriger l'utilisateur vers la page de profil
                 $_SESSION['message'] = "Les données ont été mis a jour avec succès.";
-                $this->render('user/index');
+                header('location:index.php?controller=User&action=index');
                 exit();
             }
         }
@@ -196,5 +197,43 @@ class UserController extends Controller
             // Rediriger vers la page de formulaire si la méthode de requête n'est pas POST
             $this->render('user/updateMdp');
         }
+    }
+
+
+    public function deleteAccount()
+    {
+        // Récupérer les données du User
+        $idUser = $_SESSION['id_user'];
+        $nomUser = $_SESSION['nom_user'];
+        $prenomUser = $_SESSION['prenom_user'];
+        $emailUser = $_SESSION['email_user'];
+        $statusUser = $_SESSION['status_user'];
+
+        // Creer l'objet User
+        $user = new User();
+        $user->setId_user($idUser);
+        $user->setNom_user($nomUser);
+        $user->setPrenom_user($prenomUser);
+        $user->setEmail_user($emailUser);
+        $user->setStatus_user($statusUser);
+
+        $randomName = $this->generateRandomString();
+        $randomFirstName = $this->generateRandomString();
+        $randomEmail = $this->generateRandomString() . '@example.com';
+
+        // Mettre à jour l'objet User avec les nouvelles valeurs
+        $user->setNom_user($randomName);
+        $user->setPrenom_user($randomFirstName);
+        $user->setEmail_user($randomEmail);
+        $user->setMdp_user(null);
+        $user->setStatus_user('inactif');
+
+
+        $userModel = new UserModel();
+        $userModel->updateAnonymeAccount($user);
+
+
+        $_SESSION['message'] = "Le compte utilisateur a été supprimé avec succès.";
+        header('location:index.php?controller=User&action=logOut');
     }
 }

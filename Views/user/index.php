@@ -12,9 +12,11 @@ $title = "page d'accueil";
                 </li>
             <?php endforeach; ?>
         </ul>
-        <a href='index.php?controller=question&action=addQuestion'>
-            <h3>Ajouter une question?</h3>
-        </a>
+        <button class='btn-envoyer-index'>
+            <a class='lien-envoyer-index' href='index.php?controller=question&action=addQuestion'>
+                <h3>Ajouter une question?</h3>
+            </a>
+        </button>
     </div>
 
     <div class="home">
@@ -26,9 +28,11 @@ $title = "page d'accueil";
                 </li>
             <?php endforeach; ?>
         </ul>
-        <a href="index.php?controller=category&action=addCategory">
-            <h3> Ajouter une catégorie?</h3>
-        </a>
+        <button class='btn-envoyer-index'>
+            <a class='lien-envoyer-index' href="index.php?controller=category&action=addCategory">
+                <h3> Ajouter une catégorie?</h3>
+            </a>
+        </button>
     </div>
 
     <div class="home">
