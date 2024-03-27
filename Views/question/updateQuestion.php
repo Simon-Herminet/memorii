@@ -12,12 +12,7 @@ $title = "Modifier une question";
     <div id="addForm">
         <h1>Je modifie ma question : </h1>
         <form id="envoyer" action="index.php?controller=question&action=update&id=<?php echo $list['id_question'] ?>" method="post">
-            <div class="form-group">
-                <label for="titre">
-                    <h4>titre :</h4>
-                </label>
-                <input class="textQuestion" value="<?php echo $list['titre_question']; ?>" id="titre" type="text" name="titre_question">
-            </div>
+
             <div class="form-group">
                 <label for="question">
                     <h4>Question :</h4>

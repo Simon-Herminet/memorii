@@ -4,6 +4,12 @@ $title = "Question";
 
 
 ?>
+
+<form id="searchForm">
+    <h4> Je recherche parmis mes questions :</h4>
+    <input type="text" id="searchInput" placeholder="Rechercher une question...">
+</form>
+<div id="searchResultsContainer"></div>
 <table>
     <thead>
         <tr>

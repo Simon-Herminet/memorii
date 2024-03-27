@@ -14,6 +14,7 @@ $title = "page d'accueil";
         </ul>
         <a href='index.php?controller=question&action=addQuestion'>
             <h3>Ajouter une question?</h3>
+        </a>
     </div>
 
     <div class="home">
