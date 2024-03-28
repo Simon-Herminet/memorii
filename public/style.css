@@ -314,6 +314,7 @@ table {
     line-height: 1.5em;
 }
 
-#searchForm {
+#searchFormQues,
+#searchFormCat {
     margin: 2%;
 }

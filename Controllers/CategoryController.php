@@ -111,7 +111,7 @@ class CategoryController extends Controller
         }
     }
 
-    // ****************************** DELETE CATEGORY **************************************************************
+    // ************************************************ DELETE CATEGORY **************************************************************
 
     public function deleteCategory($id)
     {
@@ -128,6 +128,22 @@ class CategoryController extends Controller
             exit;
         }
     }
-    // **************************** ADD QUESTION A CATEGORY ********************************************************
+    // ******************************************* SEARCH ASYNC CATEGORY ********************************************************
 
+    public function search()
+    {
+        $inputJSON = file_get_contents('php://input');
+        $inputArray = json_decode($inputJSON, true);
+
+        if (isset($inputArray['query'])) {
+            $searchText = $inputArray['query'];
+
+            $categoryModel = new CategoryModel();
+            $results = $categoryModel->searchCategory($searchText);
+
+            echo json_encode($results);
+        } else {
+            echo json_encode([]);
+        }
+    }
 }

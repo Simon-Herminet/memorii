@@ -176,4 +176,23 @@ class QuestionController extends Controller
             echo json_encode([]);
         }
     }
+    // ******************************************* lISTE QUESTION PAR RAPPORT AU CATEGORY *******************************************
+
+
+    public function QbyCat($id)
+    {
+        $id = $_GET['id'] ?? '';
+
+        if ($id !== '') {
+            $questionModel = new QuestionModel();
+
+            $questionsData = $questionModel->getQuestionsByCategory($id);
+
+            $categoryName = isset($questionsData['categoryName']) ? $questionsData['categoryName'] : "Catégorie inconnue";
+
+            $this->render('question/questionsByCat', ['questions' => $questionsData['questions'], 'categoryName' => $categoryName]);
+        } else {
+            echo "ID de catégorie non valide";
+        }
+    }
 }

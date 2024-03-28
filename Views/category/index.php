@@ -2,6 +2,11 @@
 $title = "Categories";
 
 ?>
+<form id="searchFormCat">
+    <h4> Je recherche parmis mes catégories :</h4>
+    <input type="text" id="searchInputCat" placeholder="Rechercher une catégorie...">
+</form>
+<div id="searchResultsContainer"></div>
 <table class='categoryIndex'>
     <thead>
         <tr>

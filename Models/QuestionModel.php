@@ -192,4 +192,29 @@ class QuestionModel extends DbConnect
             return [];
         }
     }
+    // *************************************** TROUVER LES QUESTION PAR CATEGORIE****************************************
+    public function getQuestionsByCategory($id)
+    {
+        try {
+            $this->request = $this->connection->prepare(
+                "SELECT q.*, c.titre_category AS categoryName
+            FROM question_memorii q 
+            INNER JOIN category_memorii c ON q.id_category = c.id_category 
+            WHERE q.id_category = :id_category"
+            );
+            $this->request->bindValue(':id_category', $id);
+            $this->request->execute();
+
+            // Récupérer les questions et le nom de la catégorie
+            $questions = $this->request->fetchAll(PDO::FETCH_ASSOC);
+
+            // Récupérer le nom de la catégorie s'il existe
+            $categoryName = !empty($questions) ? $questions[0]['categoryName'] : '';
+
+            return ['questions' => $questions, 'categoryName' => $categoryName];
+        } catch (Exception $e) {
+            echo 'Erreur : ' . $e->getMessage();
+            return [];
+        }
+    }
 }

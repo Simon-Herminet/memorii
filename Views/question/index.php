@@ -5,11 +5,11 @@ $title = "Question";
 
 ?>
 
-<form id="searchForm">
+<form id="searchFormQues">
     <h4> Je recherche parmis mes questions :</h4>
-    <input type="text" id="searchInput" placeholder="Rechercher une question...">
+    <input type="text" id="searchInputQuest" placeholder="Rechercher une question...">
 </form>
-<div id="searchResultsContainer"></div>
+<div id="searchResultsContainerQuestion"></div>
 <table>
     <thead>
         <tr>
