@@ -9,7 +9,9 @@ $title = "Question";
     <h4> Je recherche parmis mes questions :</h4>
     <input type="text" id="searchInputQuest" placeholder="Rechercher une question...">
 </form>
+<p> <u> Resultat de votre recherche:</p></u>
 <div id="searchResultsContainerQuestion"></div>
+
 <table>
     <thead>
         <tr>

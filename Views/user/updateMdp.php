@@ -2,8 +2,8 @@
 $title = "Mettre a jour mon mot de passe";
 ?>
 
-<div id="formAdd">
-    <div id="addForm">
+<div class="formAdd">
+    <div class="addForm">
         <h1>Je modifie mon mot de passe : </h1>
         <form id="envoyer" action="#" method="post">
             <div class="form-group">
