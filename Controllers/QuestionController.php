@@ -160,21 +160,20 @@ class QuestionController extends Controller
     }
 
     // ************************************* RECHERCHE EN ASYNCHRONE *************************************************************
-    public function search($searchText)
-    { {
-            if (isset($_GET['query'])) {
-                $searchText = $_GET['query'];
+    public function search()
+    {
+        $inputJSON = file_get_contents('php://input');
+        $inputArray = json_decode($inputJSON, true);
 
+        if (isset($inputArray['query'])) {
+            $searchText = $inputArray['query'];
 
-                $questionModel = new QuestionModel();
-                $results = $questionModel->searchQuestions($searchText);
+            $questionModel = new QuestionModel();
+            $results = $questionModel->searchQuestions($searchText);
 
-
-                echo json_encode($results);
-            } else {
-
-                echo json_encode([]);
-            }
+            echo json_encode($results);
+        } else {
+            echo json_encode([]);
         }
     }
 }
