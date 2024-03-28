@@ -78,12 +78,13 @@ class QuestionController extends Controller
             $majQuestion = new Question();
             $majQuestion->setId_question($id);
 
-            $majQuestion->setTitre_question($this->protected_values($_POST['titre_question']));
             $majQuestion->setQuestion_question($this->protected_values($_POST['question_question']));
             $majQuestion->setReponse_question($this->protected_values($_POST['reponse_question']));
             $majQuestion->setId_user($this->protected_values($_POST['id_user']));
 
             $questionModel = new QuestionModel();
+            // var_dump($questionModel);
+            // die;
             $questionModel->traitementFormUpdate($majQuestion);
 
 
@@ -107,7 +108,6 @@ class QuestionController extends Controller
             exit;
         }
     }
-
     // ********************************** FIND QUESTION SANS CATEGORY **************************************************
 
     public function questionsWithoutCategory($id)
