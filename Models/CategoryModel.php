@@ -132,4 +132,23 @@ class CategoryModel extends DbConnect
             return [];
         }
     }
+    // **************************************** RECHERCHE EN ASYNCHRONE **************************************************
+    public function searchCategory($searchText)
+    {
+        try {
+            $this->request = $this->connection->prepare(
+                "SELECT * FROM category_memorii 
+            WHERE  titre_category LIKE :searchText"
+            );
+            $this->request->bindValue(':searchText', '%' . $searchText . '%');
+            $this->request->execute();
+
+            // Retourner les résultats de la recherche
+            return $this->request->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+
+            echo 'Erreur : ' . $e->getMessage();
+            return [];
+        }
+    }
 }
