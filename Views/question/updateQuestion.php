@@ -8,8 +8,8 @@ $title = "Modifier une question";
 
 // echo '</pre>';
 ?>
-<div id="formAdd">
-    <div id="addForm">
+<div class="formAdd">
+    <div class="addForm">
         <h1>Je modifie ma question : </h1>
         <form id="envoyer" action="index.php?controller=question&action=update&id=<?php echo $list['id_question'] ?>" method="post">
 

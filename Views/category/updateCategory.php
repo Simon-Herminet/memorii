@@ -2,8 +2,8 @@
 $title = "Modifier une categorie";
 ?>
 
-<div id="formAdd">
-    <div id="addForm">
+<div class="formAdd">
+    <div class="addForm">
         <h1>Je modifie une categorie : </h1>
         <form id="envoyer" action="index.php?controller=category&action=update&id=<?php echo $list['id_category'] ?>" method="post">
             <div class="form-group">

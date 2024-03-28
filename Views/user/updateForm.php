@@ -2,8 +2,8 @@
 $title = "Modifier mes informations personnelles";
 ?>
 
-<div id="formAdd">
-    <div id="addForm">
+<div class="formAdd">
+    <div class="addForm">
         <h1>Je modifie mes informations : </h1>
         <form id="envoyer" action="#" method="post">
             <div class="form-group">

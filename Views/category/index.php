@@ -31,19 +31,20 @@ $title = "Categories";
         </tr>
     </thead>
     <tbody>
-        <!-- Boucle pour parcourir les catégories -->
-        <?php foreach ($categories as $key => $category) :
-            $rowClass = ($key % 2 == 0) ? 'impair' : 'pair'; ?>
+        <?php $rowNumber = 0; ?>
+        <?php foreach ($categories as $category) :
+            $rowClass = ($rowNumber % 2 == 0) ? 'impair' : 'pair'; ?>
             <tr class="<?php echo $rowClass; ?>">
+
                 <td>
                     <p><?php echo $category['titre_category']; ?></p>
-                </td>
+
                 <td>
                     <p><?php echo $category['description_category']; ?></p>
-                </td>
+
                 <td>
                     <p><?php echo $category['number_of_questions']; ?></p>
-                </td>
+
                 <td class='icone add'>
                     <a href="index.php?controller=question&action=questionsWithoutCategory&id=<?php echo $category['id_category']; ?>"> <svg class='svgClickable' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                             <path class='iconeColor' d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z" />
@@ -65,10 +66,9 @@ $title = "Categories";
                         </svg>
                     </a>
                 </td>
-            </tr>
-        <?php
-        // var_dump($category['id_category']);
-        endforeach; ?>
+
+                <?php $rowNumber++; ?>
+            <?php endforeach; ?>
     </tbody>
 </table>
 

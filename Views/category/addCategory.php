@@ -2,8 +2,8 @@
 $title = "J'ajoute une categorie";
 ?>
 
-<div id="formAdd">
-    <div id="addForm">
+<div class="formAdd">
+    <div class="addForm">
         <h1>J'ajoute une nouvelle categorie : </h1>
         <form id="envoyer" action="#" method="post">
             <div class="form-group">

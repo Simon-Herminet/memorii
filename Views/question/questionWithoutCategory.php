@@ -45,4 +45,5 @@ $title = "Ajouter des questions à la catégorie";
     <button type="submit" class="btn-envoyer btn-style">
         <p>Assigner la catégorie</p>
     </button>
+
 </form>
