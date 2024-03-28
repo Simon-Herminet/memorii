@@ -1,3 +1,6 @@
+<?php
+$title = 'Questions de la catégorie - ' . $categoryName; ?>
+
 <h1>Questions de la catégorie - <?php echo $categoryName; ?></h1>
 <?php
 // echo '<pre>';
