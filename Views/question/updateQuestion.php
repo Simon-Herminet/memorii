@@ -14,6 +14,19 @@ $title = "Modifier une question";
         <form id="envoyer" action="index.php?controller=question&action=update&id=<?php echo $list['id_question'] ?>" method="post">
 
             <div class="form-group">
+                <label for="category">
+                    <h4>Catégorie :</h4>
+                </label>
+                <select id="category" class="catSelect" name="category_id">
+                    <option value="">Sélectionner une catégorie (facultatif)</option>
+                    <?php foreach ($categories as $category) : ?>
+                        <option value="<?php echo $category['id_category']; ?>" <?php if ($category['id_category'] == $list['id_category']) echo 'selected'; ?>>
+                            <?php echo $category['titre_category']; ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="question">
                     <h4>Question :</h4>
                 </label>

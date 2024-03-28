@@ -67,7 +67,8 @@ class QuestionController extends Controller
 
         $questionModel = new QuestionModel();
         $list = $questionModel->formUpdate($questionUpdate);
-        $this->render('question/updateQuestion', ['list' => $list]);
+        $categories = $questionModel->getAllCategories();
+        $this->render('question/updateQuestion', ['list' => $list, 'categories' => $categories]);
     }
     // ***************************************** TRAITEMENT FORM UPDATE QUESTION *********************************************
     public function update($id)
@@ -78,23 +79,28 @@ class QuestionController extends Controller
             $majQuestion = new Question();
             $majQuestion->setId_question($id);
 
-            $majQuestion->setQuestion_question($this->protected_values($_POST['question_question']));
-            $majQuestion->setReponse_question($this->protected_values($_POST['reponse_question']));
-            $majQuestion->setId_user($this->protected_values($_POST['id_user']));
-
             $questionModel = new QuestionModel();
-            // var_dump($questionModel);
-            // die;
-            $questionModel->traitementFormUpdate($majQuestion);
+            $list = $questionModel->formUpdate($majQuestion);
 
+            $categories = $questionModel->getAllCategories();
 
-            $_SESSION['message'] = "La question a bien été modifiée";
-            header('Location: index.php?controller=question&action=index');
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $majQuestion->setQuestion_question($this->protected_values($_POST['question_question']));
+                $majQuestion->setReponse_question($this->protected_values($_POST['reponse_question']));
+                $majQuestion->setId_user($this->protected_values($_POST['id_user']));
+                $majQuestion->setId_category($this->protected_values($_POST['category_id']));
+
+                $questionModel->traitementFormUpdate($majQuestion);
+
+                $_SESSION['message'] = "La question a bien été modifiée";
+                header('Location: index.php?controller=question&action=index');
+            }
         } else {
             $_SESSION['error'] = "Problème lors de la mise à jour de la question.";
             header('Location: index.php?controller=question&action=index');
         }
     }
+
     // ************************************ DELETE QUESTION **************************************************************
 
     public function deleteQuestion($id)
@@ -131,6 +137,7 @@ class QuestionController extends Controller
             }
         }
     }
+
     public function assignCategory()
     {
         // Je declare mes variables

@@ -121,7 +121,7 @@ class CategoryModel extends DbConnect
     {
         try {
             $this->request = $this->connection->prepare(
-                "SELECT * FROM category_memorii WHERE id_user = :id_user ORDER BY id_category DESC LIMIT 4"
+                "SELECT * FROM category_memorii WHERE id_user = :id_user ORDER BY id_category DESC LIMIT 5"
             );
             $this->request->bindValue(':id_user', $id_user);
             $this->request->execute();
