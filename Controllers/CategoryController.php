@@ -63,8 +63,10 @@ class CategoryController extends Controller
 
             // J'ajoute la category à la base de données
             $categoryModel = new CategoryModel();
-            $categoryModel->add($nouvelleCategory);
 
+            $categoryModel->add($nouvelleCategory);
+            // var_dump($categoryModel);
+            // die;
             $_SESSION['message'] = "La catégorie a été ajouté avec succès.";
             header('Location:index.php?controller=category&action=index');
         } else {

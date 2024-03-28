@@ -42,7 +42,7 @@ class CategoryModel extends DbConnect
         try {
 
             $this->request = $this->connection->prepare(
-                "INSERT INTO category_memorii(titre_category, description_category, id_user, id_category)
+                "INSERT INTO category_memorii(titre_category, description_category, id_user)
                 VALUES(:titre_category, :description_category, :id_user)"
             );
 
